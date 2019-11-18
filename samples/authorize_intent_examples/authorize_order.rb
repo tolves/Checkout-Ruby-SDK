@@ -34,7 +34,7 @@ module Samples
             puts PayPalClient::openstruct_to_hash(response.result).to_json
           end
           return response
-        rescue BraintreeHttp::HttpError => ioe
+        rescue PayPalHttp::HttpError => ioe
           # Exception occured while processing the refund.
           puts " Status Code: #{ioe.status_code}"
           puts " Debug Id: #{ioe.result.debug_id}"
@@ -45,7 +45,7 @@ module Samples
   end
 end
 
-# This is the driver function which invokes the authorize_order function with approved order id 
+# This is the driver function which invokes the authorize_order function with approved order id
 # Order Id should be replaced with an valid approved order id.
 if __FILE__ == $0
   Samples::AuthorizeIntentExamples::AuthorizeOrder::new::authorize_order('0CT41921GV4167455',true)

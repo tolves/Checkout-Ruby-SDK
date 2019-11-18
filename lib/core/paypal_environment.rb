@@ -1,4 +1,4 @@
-require "braintreehttp"
+require 'paypalhttp'
 require "base64"
 
 module PayPal
@@ -8,7 +8,7 @@ module PayPal
   SANDBOXWEB = 'https://sandbox.paypal.com'
   LIVEWEB = 'https://paypal.com'
 
-  class PayPalEnvironment < BraintreeHttp::Environment
+  class PayPalEnvironment < PayPalHttp::Environment
     attr_accessor :client_id, :client_secret, :web_url
 
     def initialize(client_id, client_secret, base_url, web_url)

@@ -65,7 +65,7 @@ begin
     # If call returns body in response, you can get the deserialized version from the result attribute of the response
     order = response.result
     puts order
-rescue BraintreeHttp::HttpError => ioe
+rescue PayPalHttp::HttpError => ioe
     # Something went wrong server-side
     puts ioe.status_code
     puts ioe.headers["debug_id"]
@@ -101,7 +101,7 @@ begin
     # If call returns body in response, you can get the deserialized version from the result attribute of the response
     order = response.result
     puts order
-rescue BraintreeHttp::HttpError => ioe
+rescue PayPalHttp::HttpError => ioe
     # Something went wrong server-side
     puts ioe.status_code
     puts ioe.headers["debug_id"]

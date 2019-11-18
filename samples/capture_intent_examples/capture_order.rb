@@ -4,7 +4,7 @@ module Samples
   module CaptureIntentExamples
     class CaptureOrder
 
-      # This is the sample function performing payment capture on the order. 
+      # This is the sample function performing payment capture on the order.
       # Approved Order id should be passed as an argument to this function
       def capture_order (order_id, debug=false)
         request = OrdersCaptureRequest::new(order_id)
@@ -33,7 +33,7 @@ module Samples
             puts PayPalClient::openstruct_to_hash(response.result).to_json
           end
           return response
-        rescue BraintreeHttp::HttpError => ioe
+        rescue PayPalHttp::HttpError => ioe
           # Exception occured while processing the refund.
           puts " Status Code: #{ioe.status_code}"
           puts " Debug Id: #{ioe.result.debug_id}"

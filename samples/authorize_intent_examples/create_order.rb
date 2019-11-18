@@ -6,7 +6,7 @@ module Samples
   module AuthorizeIntentExamples
     class CreateOrder
 
-      # This is the sample function which can be used to create an order with complete body. 
+      # This is the sample function which can be used to create an order with complete body.
       # The Intent in the request body should be set as "AUTHORIZE" for authorize intent flow.
       def create_order (debug=false)
         body = {
@@ -108,7 +108,7 @@ module Samples
 
         request = OrdersCreateRequest::new
         request.headers["prefer"] = "return=representation"
-        request.request_body(body)  
+        request.request_body(body)
         begin
             response = PayPalClient::client.execute(request)
             if debug
@@ -126,7 +126,7 @@ module Samples
                 puts PayPalClient::openstruct_to_hash(response.result).to_json
             end
             return response
-        rescue BraintreeHttp::HttpError => ioe
+        rescue PayPalHttp::HttpError => ioe
             # Exception occured while processing the refund.
             puts " Status Code: #{ioe.status_code}"
             puts " Debug Id: #{ioe.result.debug_id}"
@@ -134,7 +134,7 @@ module Samples
         end
       end
 
-      # This is the sample function which can be used to create an order with minimum required body. 
+      # This is the sample function which can be used to create an order with minimum required body.
       # The Intent in the request body should be set as "AUTHORIZE" for authorize intent flow.
       def create_order_with_minimum_body (debug=false)
         body = {
@@ -173,7 +173,7 @@ module Samples
                 puts PayPalClient::openstruct_to_hash(response.result).to_json
             end
             return response
-        rescue BraintreeHttp::HttpError => ioe
+        rescue PayPalHttp::HttpError => ioe
             # Exception occured while processing the refund.
             puts " Status Code: #{ioe.status_code}"
             puts " Debug Id: #{ioe.result.debug_id}"

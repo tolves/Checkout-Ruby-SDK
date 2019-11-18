@@ -121,7 +121,7 @@ module Samples
                 puts PayPalClient::openstruct_to_hash(response.result).to_json
             end
             return response
-        rescue BraintreeHttp::HttpError => ioe
+        rescue PayPalHttp::HttpError => ioe
             # Exception occured while processing the refund.
             puts " Status Code: #{ioe.status_code}"
             puts " Debug Id: #{ioe.result.debug_id}"

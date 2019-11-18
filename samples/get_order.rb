@@ -6,7 +6,7 @@ require 'ostruct'
 include PayPalCheckoutSdk::Orders
 module Samples
   class GetOrder
-    
+
     # This function can be used to retrieve an order by passing order id as argument
     def get_order(order_id)
       request = OrdersGetRequest::new(order_id)
@@ -24,7 +24,7 @@ module Samples
         puts "Gross Amount: #{response.result.purchase_units[0].amount.currency_code} #{response.result.purchase_units[0].amount.value}"
         puts PayPalClient::openstruct_to_hash(response.result).to_json
         return response
-      rescue BraintreeHttp::HttpError => ioe
+      rescue PayPalHttp::HttpError => ioe
         # Exception occured while processing the refund.
         puts " Status Code: #{ioe.status_code}"
         puts " Debug Id: #{ioe.result.debug_id}"
@@ -35,7 +35,7 @@ module Samples
 end
 
 # This is the driver function which invokes the get_order function with order id to retrieve
-# an sample order. For the order id, we invoke the create order to create an new order and then we are using 
+# an sample order. For the order id, we invoke the create order to create an new order and then we are using
 # the newly created order id for retrieving the order
 if __FILE__ == $0
   id = Samples::AuthorizeIntentExamples::CreateOrder::new::create_order.result.id;

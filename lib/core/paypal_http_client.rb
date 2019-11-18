@@ -1,9 +1,9 @@
-require "braintreehttp"
+require 'paypalhttp'
 require 'openssl'
 require_relative './version'
 
 module PayPal
-  class PayPalHttpClient < BraintreeHttp::HttpClient
+  class PayPalHttpClient < PayPalHttp::HttpClient
     attr_accessor :refresh_token
 
     def initialize(environment, refresh_token = nil)
@@ -15,7 +15,7 @@ module PayPal
     end
 
     def user_agent
-      library_details ||= "paypal-sdk-core #{VERSION}; ruby #{RUBY_VERSION}p#{RUBY_PATCHLEVEL}-#{RUBY_PLATFORM}"
+      library_details ||= "paypal-checkout-sdk #{VERSION}; ruby #{RUBY_VERSION}p#{RUBY_PATCHLEVEL}-#{RUBY_PLATFORM}"
       begin
         library_details << ";#{OpenSSL::OPENSSL_LIBRARY_VERSION}"
       rescue NameError
@@ -40,7 +40,7 @@ module PayPal
       request.headers["Accept-Encoding"] = "gzip"
       request.headers["sdk_name"] = "Checkout SDK"
       request.headers["sdk_version"] = VERSION
-      request.headers["sdk_tech_stack"] = "Python" + RUBY_VERSION
+      request.headers["sdk_tech_stack"] = "Ruby" + RUBY_VERSION
       request.headers["api_integration_type"] = "PAYPALSDK"
     end
 

@@ -2,8 +2,8 @@ require_relative './paypal_client' #PayPal SDK dependency
 include PayPalCheckoutSdk::Payments
 module Samples
     class RefundCapture
-      
-      # This is the sample function performing capture refund. 
+
+      # This is the sample function performing capture refund.
       # Valid capture id should be passed as an argument to this function
       def refund_capture (capture_id, debug=false)
         request = CapturesRefundRequest::new(capture_id)
@@ -29,7 +29,7 @@ module Samples
           end
           puts PayPalClient::openstruct_to_hash(response.result).to_json
         end
-        rescue BraintreeHttp::HttpError => ioe
+        rescue PayPalHttp::HttpError => ioe
           # Exception occured while processing the refund.
           puts " Status Code: #{ioe.status_code}"
           puts " Debug Id: #{ioe.result.debug_id}"

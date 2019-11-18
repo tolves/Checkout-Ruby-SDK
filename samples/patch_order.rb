@@ -44,7 +44,7 @@ if __FILE__ == $0
       puts "Updated Custom Id: #{order.result.purchase_units[0].custom_id}"
       puts PayPalClient::openstruct_to_hash(order.result).to_json
     end
-  rescue BraintreeHttp::HttpError => ioe
+  rescue PayPalHttp::HttpError => ioe
     # Exception occured while processing the refund.
     puts " Status Code: #{ioe.status_code}"
     puts " Debug Id: #{ioe.result.debug_id}"

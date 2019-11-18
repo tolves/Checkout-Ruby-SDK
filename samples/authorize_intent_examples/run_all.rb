@@ -3,7 +3,7 @@ require_relative './create_order'
 require_relative './authorize_order'
 require_relative './capture_order'
 require_relative '../refund_capture'
-include BraintreeHttp
+include PayPalHttp
 
 puts "Creating Order..."
 create_resp = Samples::AuthorizeIntentExamples::CreateOrder::new::create_order

@@ -1,4 +1,4 @@
-require 'braintreehttp'
+require 'paypalhttp'
 require './lib/paypal-checkout-sdk'
 
 module TestHarness
